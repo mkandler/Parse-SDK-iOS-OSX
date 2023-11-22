@@ -13,14 +13,22 @@
 
 #import "PFObject.h"
 #import "PFSubclassing.h"
+#import "PFUser.h"
+#import "PFSession.h"
+#import "PFRole.h"
+#import "PFPin.h"
+#import "PFEventuallyPin.h"
 
 #import "PFAssert.h"
 #import "PFMacros.h"
-#import "PFObject.h"
 #import "PFObject+Subclass.h"
 #import "PFObjectSubclassInfo.h"
 #import "PFPropertyInfo_Private.h"
 #import "PFPropertyInfo_Runtime.h"
+
+#if !TARGET_OS_WATCH && !TARGET_OS_TV
+    #import "PFInstallation.h"
+#endif
 
 // CFNumber does not use number type 0, we take advantage of that here.
 #define kCFNumberTypeUnknown 0
@@ -119,6 +127,23 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
 }
 
 - (void)scanForUnregisteredSubclasses:(BOOL)shouldSubscribe {
+    // NOTE: Scanning seems unnecessary and we prefer to intentionally declare subclasses.
+    // Should improve loading times as well.
+    // Reference: https://github.com/parse-community/Parse-SDK-iOS-OSX/commit/b5beb7c3abdac5511b45eef06ad3475f2f8898ee
+    [self _rawRegisterSubclass:[PFUser class]];
+    [self _rawRegisterSubclass:[PFSession class]];
+    [self _rawRegisterSubclass:[PFRole class]];
+    [self _rawRegisterSubclass:[PFPin class]];
+    [self _rawRegisterSubclass:[PFEventuallyPin class]];
+    #if !TARGET_OS_WATCH && !TARGET_OS_TV
+        [self _rawRegisterSubclass:[PFInstallation class]];
+    #endif
+    return;
+    
+    ///////////////////////////////////////////////
+    // DEPRECATED:
+    ///////////////////////////////////////////////
+    
     // NOTE: Potential race-condition here - if another thread dynamically loads a bundle, we may end up accidentally
     // Skipping a bundle. Not entirely sure of the best solution to that here.
     if (shouldSubscribe && _bundleLoadedSubscriptionToken == nil) {
@@ -391,6 +416,9 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
         }
 
         for (unsigned i = 0; i < bundleClassCount; i++) {
+            if (i >= sizeof(classNames)) {
+                continue;
+            }
             Class bundleClass = objc_getClass(classNames[i]);
             // For obvious reasons, don't register the PFObject class.
             if (bundleClass == pfObjectClass) {
