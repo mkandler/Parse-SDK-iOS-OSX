@@ -1,52 +1,41 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Bolts",
-        "repositoryURL": "https://github.com/parse-community/Bolts-ObjC.git",
-        "state": {
-          "branch": null,
-          "revision": "1eee96ad3bcfc8964c0a5815ce94f491eb6ac8c2",
-          "version": "1.10.0"
-        }
-      },
-      {
-        "package": "BoltsSwift",
-        "repositoryURL": "https://github.com/BoltsFramework/Bolts-Swift.git",
-        "state": {
-          "branch": null,
-          "revision": "d8c07eee2045a13f34330c0a4664053b5176e3f0",
-          "version": "1.5.0"
-        }
-      },
-      {
-        "package": "Facebook",
-        "repositoryURL": "https://github.com/facebook/facebook-ios-sdk.git",
-        "state": {
-          "branch": null,
-          "revision": "7fd8a930a5b2c940a22efafe0e214ed0df671312",
-          "version": "15.1.0"
-        }
-      },
-      {
-        "package": "OCMock",
-        "repositoryURL": "https://github.com/erikdoe/ocmock.git",
-        "state": {
-          "branch": null,
-          "revision": "67bb9602f0a7541f24dc2d6d0d7389ca3e4c2c89",
-          "version": null
-        }
-      },
-      {
-        "package": "Starscream",
-        "repositoryURL": "https://github.com/daltoniam/Starscream.git",
-        "state": {
-          "branch": null,
-          "revision": "ac6c0fc9da221873e01bd1a0d4818498a71eef33",
-          "version": "4.0.6"
-        }
+  "originHash" : "6205f439ea9fd08ccc003278a7106ffc8629014235929e74426f3e9a95010b5b",
+  "pins" : [
+    {
+      "identity" : "bolts-objc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/parse-community/Bolts-ObjC.git",
+      "state" : {
+        "revision" : "1eee96ad3bcfc8964c0a5815ce94f491eb6ac8c2",
+        "version" : "1.10.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "bolts-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/BoltsFramework/Bolts-Swift.git",
+      "state" : {
+        "revision" : "d8c07eee2045a13f34330c0a4664053b5176e3f0",
+        "version" : "1.5.0"
+      }
+    },
+    {
+      "identity" : "ocmock",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/erikdoe/ocmock",
+      "state" : {
+        "revision" : "67bb9602f0a7541f24dc2d6d0d7389ca3e4c2c89"
+      }
+    },
+    {
+      "identity" : "starscream",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/daltoniam/Starscream.git",
+      "state" : {
+        "revision" : "ac6c0fc9da221873e01bd1a0d4818498a71eef33",
+        "version" : "4.0.6"
+      }
+    }
+  ],
+  "version" : 3
 }
